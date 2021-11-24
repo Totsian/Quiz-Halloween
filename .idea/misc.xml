@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.13333333333333333" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/button_equal.xml" value="0.23645833333333333" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/choose_quiz_btn.xml" value="0.28615384615384615" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/dialog_btn.xml" value="0.28615384615384615" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/dialog_btn_ok.xml" value="0.10740740740740741" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/false_ans.xml" value="0.13333333333333333" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/next.xml" value="0.13333333333333333" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/shape_dialog.xml" value="0.140625" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/drawable/shape_text.xml" value="0.13333333333333333" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/activity_main.xml" value="0.2203125" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/activity_rating.xml" value="0.264" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/choose_quiz.xml" value="0.264" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/dialog_user.xml" value="0.264" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/fragment_doctor.xml" value="0.18020833333333333" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/fragment_quiz.xml" value="0.27447916666666666" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/fragment_result.xml" value="0.15555555555555556" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/fragment_start.xml" value="0.15555555555555556" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/fragment_user_inf.xml" value="0.27447916666666666" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/layout/rating_user.xml" value="0.264" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/PrPM/QuizHalloween/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

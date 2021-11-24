@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Quiz Halloween</string>
+    <string name="StartBtn">Начать</string>
+    <string name="ExitBtn">Выйти</string>
+
+    <!-- Для диалога -->
+    <string name="text_dialog">Желаете покинуть игру?</string>
+    <string name="exit">Да</string>
+    <string name="cancel">Нет</string>
+
+    <string name="next">Дальше</string>
+    <string name="result">Ваш результат:</string>
+    <string name="back">Назад</string>
+    <string name="quest">Вопрос</string>
+    <string name="time">Время</string>
+    <string name="user_date">Введите ваши данные...</string>
+    <string name="name">Имя:</string>
+    <string name="su_name">Фамилия:</string>
+    <string name="btn_ok">Ok</string>
+</resources>

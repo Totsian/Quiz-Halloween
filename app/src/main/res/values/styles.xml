@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="buttons">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/back</item>
+        <!--        <item name="android:background">@android:color/transparent</item>-->
+        <item name="android:background">@drawable/button_equal</item>
+        <item name="android:textSize">35sp</item>
+    </style>
+
+    <style name="btnQuiz">
+        <item name="android:background">@drawable/button_equal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/back</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="btnChoose">
+        <item name="android:background">@drawable/choose_quiz_btn</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/back</item>
+    </style>
+
+    <style name="next">
+        <item name="android:background">@drawable/next</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textQuest">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textResult">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="textResultTitle">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="textResultR">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textDialog">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="btnDialog">
+        <item name="android:background">@drawable/dialog_btn</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textDialogTitle">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="textRating">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/back</item>
+        <item name="colorAccent">@color/btn_p</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+</resources>

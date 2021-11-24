@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "10254028078",
+    "project_id": "quiz-halloween",
+    "storage_bucket": "quiz-halloween.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10254028078:android:bd408813f8c7404bd5bebf",
+        "android_client_info": {
+          "package_name": "com.example.quizhalloween"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10254028078-o27f30f35vjm74pi0ahbp47k0jegic7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDAi5aEoYhaUSh_U5nof56asOpIXUVjiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10254028078-o27f30f35vjm74pi0ahbp47k0jegic7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
