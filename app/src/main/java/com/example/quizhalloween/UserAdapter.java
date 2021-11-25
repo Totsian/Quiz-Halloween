@@ -37,11 +37,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.userRating.setText(result);
     }
 
-//    @Override
-//    public int getItemCount() {
-//        return userInf.size();
-//    }
-
     @Override
     public int getItemCount() {
         return userInf == null ? 0 : userInf.size();

@@ -14,13 +14,6 @@ public class FirebaseAdapter {
 
     private DatabaseReference mDatabase;
 
-    public void writeUser(String name, String surName, int result) {
-
-        UserInformation user = new UserInformation(name, surName, result);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").child(user.getUserSurName()).setValue(user);
-    }
-
     public void writeUser(String userId, String name, String surName, int result) {
         UserInformation user = new UserInformation(name, surName, result);
         mDatabase = FirebaseDatabase.getInstance().getReference();

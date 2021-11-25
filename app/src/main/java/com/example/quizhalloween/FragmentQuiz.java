@@ -33,14 +33,11 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
     private String question, ans_1, ans_2, ans_3, ans_4;
     private ArrayList<Question> quest;
     private int index = -1;
-    private int result, count = 0;
+    private int result = 0;
     private boolean chek_1, chek_2, chek_3, chek_4;
-    //    private boolean cancel = false;
-//    private boolean start = false;
     private CountDownTimer countDownTimer;
     private long start;
     private long down;
-    private Random random = new Random();
     Handler h;
     OnSelectedButtonListener onSelectedButtonListener;
 
@@ -77,8 +74,6 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
         btn4 = quizView.findViewById(R.id.btn4);
         btn4.setOnClickListener(this);
         btnNext = quizView.findViewById(R.id.btnNext);
-//        btnNext.setOnClickListener(this);
-//        btnNext.setVisibility(quizView.INVISIBLE);
 
         quest = QuestionGenerator.getQuestions();
         h = new Handler();
