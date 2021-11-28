@@ -56,8 +56,6 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
         toMenu = ratingView.findViewById(R.id.toMune);
         toMenu.setOnClickListener(this);
 
-//        database = FirebaseDatabase.getInstance().getReference().child("users");
-
         lm = new LinearLayoutManager(this.getActivity());
         lm.setReverseLayout(true);
         lm.setStackFromEnd(true);
