@@ -32,13 +32,13 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
     private Button btn1, btn2, btn3, btn4, btnNext;
     private String question, ans_1, ans_2, ans_3, ans_4;
     private ArrayList<Question> quest;
-    private int index = -1;
+    private int index = 0;
     private int result = 0;
     private boolean chek_1, chek_2, chek_3, chek_4;
-    private CountDownTimer countDownTimer;
-    private long start;
-    private long down;
-    Handler h;
+    //    private CountDownTimer countDownTimer;
+//    private long start;
+//    private long down;
+//    Handler h;
     OnSelectedButtonListener onSelectedButtonListener;
 
     @Override
@@ -74,66 +74,68 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
         btn4 = quizView.findViewById(R.id.btn4);
         btn4.setOnClickListener(this);
         btnNext = quizView.findViewById(R.id.btnNext);
+        btnNext.setOnClickListener(this);
 
         quest = QuestionGenerator.getQuestions();
-        h = new Handler();
-
+//        h = new Handler();
+        changeQuest();
         return quizView;
     }
 
 
-    final Runnable updateTimer = new Runnable() {
-        @Override
-        public void run() {
-            index++;
-            if (index < quest.size()) {
-                start = 10000;
-                down = 1000;
-                timer(start, down);
-                updateQuestions();
-                btnNext.setVisibility(quizView.INVISIBLE);
-                btn1.setEnabled(true);
-                btn2.setEnabled(true);
-                btn3.setEnabled(true);
-                btn4.setEnabled(true);
-                btn1.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                btn2.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                btn3.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                btn4.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                h.postDelayed(this, 10000);
-            } else {
-                updateResult();
-                onSelectedButtonListener.onButtonSelected(5); // результат
-            }
+    //    final Runnable updateTimer = new Runnable() {
+//        @Override
+//        public void run() {
+    private void changeQuest() {
+        index++;
+        if (index < quest.size()) {
+//            start = 10000;
+//            down = 1000;
+//            timer(start, down);
+            updateQuestions();
+            btnNext.setVisibility(quizView.INVISIBLE);
+            btn1.setEnabled(true);
+            btn2.setEnabled(true);
+            btn3.setEnabled(true);
+            btn4.setEnabled(true);
+            btn1.setBackground(getResources().getDrawable(R.drawable.button_equal));
+            btn2.setBackground(getResources().getDrawable(R.drawable.button_equal));
+            btn3.setBackground(getResources().getDrawable(R.drawable.button_equal));
+            btn4.setBackground(getResources().getDrawable(R.drawable.button_equal));
+//            h.postDelayed(this, 10000);
+        } else {
+            updateResult();
+            onSelectedButtonListener.onButtonSelected(5); // результат
         }
-    };
-
-    private void timer(long startCl, long downCl) {
-        countDownTimer = new CountDownTimer(startCl, downCl) {
-            public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished / 1000 <= 9)
-                    timer.setText("0:0" + millisUntilFinished / 1000);
-                else
-                    timer.setText("0:" + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-                timer.setText("0:30");
-            }
-        }.start();
     }
+//    };
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        h.postDelayed(updateTimer, 10);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        h.removeCallbacks(updateTimer);
-    }
+//    private void timer(long startCl, long downCl) {
+//        countDownTimer = new CountDownTimer(startCl, downCl) {
+//            public void onTick(long millisUntilFinished) {
+//                if (millisUntilFinished / 1000 <= 9)
+//                    timer.setText("0:0" + millisUntilFinished / 1000);
+//                else
+//                    timer.setText("0:" + millisUntilFinished / 1000);
+//            }
+//
+//            public void onFinish() {
+//                timer.setText("0:30");
+//            }
+//        }.start();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        h.postDelayed(updateTimer, 10);
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        h.removeCallbacks(updateTimer);
+//    }
 
     private void updateQuestions() {
 
@@ -162,6 +164,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
         btn2.setEnabled(false);
         btn3.setEnabled(false);
         btn4.setEnabled(false);
+        btnNext.setVisibility(quizView.VISIBLE);
     }
 
     @Override
@@ -172,36 +175,30 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 if (chek_1 == true) {
                     btn1.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
-                    buttonsEn();
                 } else {
                     btn1.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
-//                btnNext.setVisibility(quizView.VISIBLE);
+                buttonsEn();
                 break;
             case R.id.btn2:
                 chek_2 = quest.get(index).checkAnswer(ans_2);
                 if (chek_2 == true) {
                     btn2.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
-                    buttonsEn();
                 } else {
                     btn2.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
-//                btnNext.setVisibility(quizView.VISIBLE);
+                buttonsEn();
                 break;
             case R.id.btn3:
                 chek_3 = quest.get(index).checkAnswer(ans_3);
                 if (chek_3 == true) {
                     btn3.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
-                    buttonsEn();
                 } else {
                     btn3.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
-//                btnNext.setVisibility(quizView.VISIBLE);
+                buttonsEn();
                 break;
             case R.id.btn4:
                 chek_4 = quest.get(index).checkAnswer(ans_4);
@@ -211,22 +208,11 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 } else {
                     btn4.setBackground(getResources().getDrawable(R.drawable.false_ans));
                 }
-//                btnNext.setVisibility(quizView.VISIBLE);
+                buttonsEn();
                 break;
-//            case R.id.btnNext:
-////                start = 0;
-////                down = 0;
-////                h.postDelayed(updateTimer, 0);
-////                timer(0, 0);
-////                updateTimer.run();
-//                countDownTimer.cancel();
-//                countDownTimer.start();
-//                h.removeCallbacks(updateTimer);
-//                timer(0,0);
-////                h.removeCallbacks(updateTimer);
-//                updateTimer.run();
-////                updateTimer.
-//                break;
+            case R.id.btnNext:
+                changeQuest();
+                break;
         }
     }
 }

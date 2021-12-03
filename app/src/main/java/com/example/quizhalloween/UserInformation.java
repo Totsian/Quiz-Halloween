@@ -19,23 +19,11 @@ public class UserInformation {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getUserSurName() {
         return userSurName;
     }
 
-    public void setUserSurName(String userSurName) {
-        this.userSurName = userSurName;
-    }
-
     public int getUserResult() {
         return userResult;
-    }
-
-    public void setUserResult(int userResult) {
-        this.userResult = userResult;
     }
 }

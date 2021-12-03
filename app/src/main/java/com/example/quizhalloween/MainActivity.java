@@ -6,17 +6,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.quizhalloween.DialogFragment;
-import com.example.quizhalloween.DialogUser;
-import com.example.quizhalloween.FragmentChoose;
-import com.example.quizhalloween.FragmentDoctor;
-import com.example.quizhalloween.FragmentQuiz;
-import com.example.quizhalloween.FragmentRating;
-import com.example.quizhalloween.FragmentResult;
-import com.example.quizhalloween.FragmentStart;
-import com.example.quizhalloween.OnSelectedButtonListener;
-import com.example.quizhalloween.R;
-
 public class MainActivity extends AppCompatActivity implements OnSelectedButtonListener {
 
     public static final String KEY_RESULT = "key_result";

@@ -43,7 +43,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //        final ImageView userImage;
         final TextView userRating;
         final TextView userName;
         final TextView userSurName;

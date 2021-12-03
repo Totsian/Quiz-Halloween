@@ -15,9 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.quizhalloween.OnSelectedButtonListener;
-import com.example.quizhalloween.R;
-import com.example.quizhalloween.UserInformation;
 import com.example.quizhalloween.quest.Answer;
 import com.example.quizhalloween.quest.Question;
 import com.google.firebase.database.ChildEventListener;
@@ -25,29 +22,26 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.AbstractQueue;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class FragmentDoctor extends Fragment implements View.OnClickListener {
 
     public static final String KEY_RESULT = "key_result";
     OnSelectedButtonListener onSelectedButtonListener;
     private TextView time, numQuest, textQuest;
-    private Button btn1, btn2, btn3, btn4;
+    private Button btn1, btn2, btn3, btn4, btnNext;
     private ArrayList<Question> questions = new ArrayList<>();
     private ArrayList<Answer> answers = new ArrayList<>();
     private ArrayList<Answer> answersTrue = new ArrayList<>();
+    private View viewDoctor;
     DatabaseReference database;
-    Handler h;
+//    Handler h;
     private int result = 0;
     private int index = -1;
 
-    Random random = new Random();
     private String question, ans_1, ans_2, ans_3, ans_4;
-    private CountDownTimer countDownTimer;
+//    private CountDownTimer countDownTimer;
 
     @Override
     public void onAttach(@NonNull Context activity) {
@@ -67,9 +61,9 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View viewDoctor = inflater.inflate(R.layout.fragment_doctor, container, false);
+        viewDoctor = inflater.inflate(R.layout.fragment_doctor, container, false);
 
-        time = viewDoctor.findViewById(R.id.timeD);
+//        time = viewDoctor.findViewById(R.id.timeD);
         numQuest = viewDoctor.findViewById(R.id.numQuestD);
         textQuest = viewDoctor.findViewById(R.id.text_question_d);
 
@@ -81,64 +75,66 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
         btn3.setOnClickListener(this);
         btn4 = viewDoctor.findViewById(R.id.btn4_d);
         btn4.setOnClickListener(this);
-        h = new Handler();
+        btnNext = viewDoctor.findViewById(R.id.btnNext_d);
+        btnNext.setOnClickListener(this);
+//        h = new Handler();
         database = FirebaseDatabase.getInstance().getReference().child("Doc");
-
+        changeQuest();
         return viewDoctor;
     }
 
-    final Runnable updateTimer = new Runnable() {
-        @Override
-        public void run() {
-            index++;
-//            index = random.nextInt(20);
-            if (index < 10) {
-                timer();
-                getQuestion();
-                btn1.setEnabled(true);
-                btn2.setEnabled(true);
-                btn3.setEnabled(true);
-                btn4.setEnabled(true);
-                btn1.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                btn2.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                btn3.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                btn4.setBackground(getResources().getDrawable(R.drawable.button_equal));
-                h.postDelayed(this, 10000);
+    //    final Runnable updateTimer = new Runnable() {
+//        @Override
+//        public void run() {
+    private void changeQuest() {
+        index++;
+        if (index < 10) {
+//                timer();
+            getQuestion();
+            btn1.setEnabled(true);
+            btn2.setEnabled(true);
+            btn3.setEnabled(true);
+            btn4.setEnabled(true);
+            btnNext.setVisibility(viewDoctor.INVISIBLE);
+            btn1.setBackground(getResources().getDrawable(R.drawable.button_equal));
+            btn2.setBackground(getResources().getDrawable(R.drawable.button_equal));
+            btn3.setBackground(getResources().getDrawable(R.drawable.button_equal));
+            btn4.setBackground(getResources().getDrawable(R.drawable.button_equal));
+//                h.postDelayed(this, 10000);
 //                countIt++;
-            }
-            else {
-                updateResult();
-                onSelectedButtonListener.onButtonSelected(5); // результат
-            }
+        } else {
+            updateResult();
+            onSelectedButtonListener.onButtonSelected(5); // результат
         }
-    };
-
-    private void timer() {
-        countDownTimer = new CountDownTimer(10000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished / 1000 <= 9)
-                    time.setText("0:0" + millisUntilFinished / 1000);
-                else
-                    time.setText("0:" + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-                time.setText("0:30");
-            }
-        }.start();
     }
+//    };
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        h.postDelayed(updateTimer, 10);
-    }
+//    private void timer() {
+//        countDownTimer = new CountDownTimer(10000, 1000) {
+//            public void onTick(long millisUntilFinished) {
+//                if (millisUntilFinished / 1000 <= 9)
+//                    time.setText("0:0" + millisUntilFinished / 1000);
+//                else
+//                    time.setText("0:" + millisUntilFinished / 1000);
+//            }
+//
+//            public void onFinish() {
+//                time.setText("0:30");
+//            }
+//        }.start();
+//    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        h.removeCallbacks(updateTimer);
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        h.postDelayed(updateTimer, 10);
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        h.removeCallbacks(updateTimer);
+//    }
 
     private void getQuestion() {
         database.addChildEventListener(new ChildEventListener() {
@@ -173,7 +169,6 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
 
     private void updateQuestions() {
         numQuest.setText("Вопрос: " + (index + 1) + "/10");
-
         question = questions.get(index).getTextQuest();
         textQuest.setText(question);
         ans_1 = questions.get(index).getAnswers().get(index).getAns1();
@@ -198,6 +193,7 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
         btn2.setEnabled(false);
         btn3.setEnabled(false);
         btn4.setEnabled(false);
+        btnNext.setVisibility(viewDoctor.VISIBLE);
     }
 
     @Override
@@ -208,11 +204,10 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
                 if (answersTrue.get(index).getTextAnswer().equals(ans_1)) {
                     btn1.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
-                    buttonsEn();
                 } else {
                     btn1.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
+                buttonsEn();
                 break;
 
             case R.id.btn2_d:
@@ -221,8 +216,8 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
                     result++;
                 } else {
                     btn2.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
+                buttonsEn();
                 break;
 //
             case R.id.btn3_d:
@@ -231,8 +226,8 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
                     result++;
                 } else {
                     btn3.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
+                buttonsEn();
                 break;
 
             case R.id.btn4_d:
@@ -241,8 +236,11 @@ public class FragmentDoctor extends Fragment implements View.OnClickListener {
                     result++;
                 } else {
                     btn4.setBackground(getResources().getDrawable(R.drawable.false_ans));
-                    buttonsEn();
                 }
+                buttonsEn();
+                break;
+            case R.id.btnNext_d:
+                changeQuest();
                 break;
         }
     }

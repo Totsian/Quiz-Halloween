@@ -1,27 +1,14 @@
 package com.example.quizhalloween;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
-import com.example.quizhalloween.FirebaseAdapter;
-import com.example.quizhalloween.OnSelectedButtonListener;
-import com.example.quizhalloween.R;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.UUID;
 

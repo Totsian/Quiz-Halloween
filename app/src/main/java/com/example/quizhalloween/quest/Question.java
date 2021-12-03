@@ -6,7 +6,6 @@ public class Question {
 
     public String textQuest;
     public ArrayList<Answer> answers;
-//    public ArrayList<Answer> answersTrue;
 
     public Question() {
 
