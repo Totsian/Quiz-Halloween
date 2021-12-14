@@ -171,7 +171,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                chek_1 = quest.get(index).checkAnswer(ans_1);
+                chek_1 = quest.get(index).getAnswers().get(0).getIsAnswTrue();
                 if (chek_1 == true) {
                     btn1.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
@@ -181,7 +181,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 buttonsEn();
                 break;
             case R.id.btn2:
-                chek_2 = quest.get(index).checkAnswer(ans_2);
+                chek_2 = quest.get(index).getAnswers().get(1).getIsAnswTrue();
                 if (chek_2 == true) {
                     btn2.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
@@ -191,7 +191,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 buttonsEn();
                 break;
             case R.id.btn3:
-                chek_3 = quest.get(index).checkAnswer(ans_3);
+                chek_3 = quest.get(index).getAnswers().get(2).getIsAnswTrue();
                 if (chek_3 == true) {
                     btn3.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
@@ -201,7 +201,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 buttonsEn();
                 break;
             case R.id.btn4:
-                chek_4 = quest.get(index).checkAnswer(ans_4);
+                chek_4 = quest.get(index).getAnswers().get(3).getIsAnswTrue();
                 if (chek_4 == true) {
                     btn4.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;

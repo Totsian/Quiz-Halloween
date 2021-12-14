@@ -27,7 +27,7 @@ public class DialogUser extends AppCompatDialogFragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_user, container);
+        View view = inflater.inflate(R.layout.dialog_user, null);
         setCancelable(false);
         return view;
     }
