@@ -56,7 +56,7 @@ public class FragmentStart extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.startBtn:
-                onSelectedButtonListener.onButtonSelected(7); // в игру
+                onSelectedButtonListener.onButtonSelected(1); // в игру
                 break;
             case R.id.exitBtn:
                 onSelectedButtonListener.onButtonSelected(2); // выход

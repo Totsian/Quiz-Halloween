@@ -11,12 +11,6 @@
     android:paddingBottom="8dp"
     android:background="@color/back_rating">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/userImage"-->
-<!--        android:layout_width="32dp"-->
-<!--        android:layout_height="32dp"-->
-<!--        android:src="@mipmap/ic_launcher_round" />-->
-
     <TextView
         android:id="@+id/nameRating"
         style="@style/textResult"

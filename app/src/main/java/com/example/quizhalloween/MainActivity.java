@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
     FragmentQuiz fragmentQuiz;
     FragmentResult fragmentResult;
     FragmentRating ratingResult;
-    FragmentChoose fragmentChoose;
-    FragmentDoctor fragmentDoctor;
     FragmentTransaction ft;
 
     @Override
@@ -80,22 +78,6 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
 
             ratingResult = new FragmentRating();
             ft.replace(R.id.containerFrag, ratingResult);
-            ft.addToBackStack(null);
-            ft.commit();
-
-//      переключение на фрагмент с выбором квиза
-        } else if (buttonIndex == 7) {
-            ft = getSupportFragmentManager().beginTransaction();
-            fragmentChoose = new FragmentChoose();
-            ft.replace(R.id.containerFrag, fragmentChoose);
-            ft.addToBackStack(null);
-            ft.commit();
-
-//      переключение на фрагмент с квизом Доктор Кто
-        } else if (buttonIndex == 8) {
-            ft = getSupportFragmentManager().beginTransaction();
-            fragmentDoctor = new FragmentDoctor();
-            ft.replace(R.id.containerFrag, fragmentDoctor);
             ft.addToBackStack(null);
             ft.commit();
         }

@@ -20,12 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="#56E78330">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/userImage"-->
-<!--            android:layout_width="32dp"-->
-<!--            android:layout_height="32dp"-->
-<!--            android:src="@mipmap/ic_launcher_round" />-->
-
         <TextView
             android:id="@+id/nameRating"
             style="@style/textResultTitle"

@@ -11,10 +11,6 @@ public class Question {
 
     }
 
-    public Question(String text) {
-        this.textQuest = text;
-    }
-
     // конструктор, принимающий два параметра
     public Question(String text, ArrayList<Answer> answers) {
         this.textQuest = text;

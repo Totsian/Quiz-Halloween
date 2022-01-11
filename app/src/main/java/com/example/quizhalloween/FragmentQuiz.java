@@ -20,6 +20,11 @@ import com.example.quizhalloween.OnSelectedButtonListener;
 import com.example.quizhalloween.R;
 import com.example.quizhalloween.quest.Question;
 import com.example.quizhalloween.quest.QuestionGenerator;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,17 +33,15 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
 
     public static final String KEY_RESULT = "key_result";
     private View quizView;
-    private TextView text_question, numQuest, timer;
+    private TextView text_question, numQuest;
     private Button btn1, btn2, btn3, btn4, btnNext;
     private String question, ans_1, ans_2, ans_3, ans_4;
-    private ArrayList<Question> quest;
-    private int index = 0;
+    private ArrayList<Question> questions = new ArrayList<>();
+    private int index = -1;
     private int result = 0;
     private boolean chek_1, chek_2, chek_3, chek_4;
-    //    private CountDownTimer countDownTimer;
-//    private long start;
-//    private long down;
-//    Handler h;
+
+    DatabaseReference database;
     OnSelectedButtonListener onSelectedButtonListener;
 
     @Override
@@ -63,8 +66,6 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
 
         text_question = quizView.findViewById(R.id.text_question);
         numQuest = quizView.findViewById(R.id.numQuest);
-        timer = quizView.findViewById(R.id.time);
-
         btn1 = quizView.findViewById(R.id.btn1);
         btn1.setOnClickListener(this);
         btn2 = quizView.findViewById(R.id.btn2);
@@ -76,23 +77,26 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
         btnNext = quizView.findViewById(R.id.btnNext);
         btnNext.setOnClickListener(this);
 
-        quest = QuestionGenerator.getQuestions();
-//        h = new Handler();
+//        если без базы данных
+//        questions = QuestionGenerator.getQuestions();
+
+//        передача вопросов с ответами в Firebase
+//        quest = QuestionGenerator.getQuestions();
+//        FirebaseAdapter firebaseAdapter = new FirebaseAdapter();
+//        firebaseAdapter.writeQuest(quest);
+
+        database = FirebaseDatabase.getInstance().getReference().child("quest");
         changeQuest();
         return quizView;
     }
 
-
-    //    final Runnable updateTimer = new Runnable() {
-//        @Override
-//        public void run() {
     private void changeQuest() {
         index++;
-        if (index < quest.size()) {
-//            start = 10000;
-//            down = 1000;
-//            timer(start, down);
-            updateQuestions();
+        if (index < 10) {
+//            если без базы данных
+//            updateQuestions();
+
+            getQuestion();
             btnNext.setVisibility(quizView.INVISIBLE);
             btn1.setEnabled(true);
             btn2.setEnabled(true);
@@ -102,53 +106,52 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
             btn2.setBackground(getResources().getDrawable(R.drawable.button_equal));
             btn3.setBackground(getResources().getDrawable(R.drawable.button_equal));
             btn4.setBackground(getResources().getDrawable(R.drawable.button_equal));
-//            h.postDelayed(this, 10000);
         } else {
             updateResult();
             onSelectedButtonListener.onButtonSelected(5); // результат
         }
     }
-//    };
 
-//    private void timer(long startCl, long downCl) {
-//        countDownTimer = new CountDownTimer(startCl, downCl) {
-//            public void onTick(long millisUntilFinished) {
-//                if (millisUntilFinished / 1000 <= 9)
-//                    timer.setText("0:0" + millisUntilFinished / 1000);
-//                else
-//                    timer.setText("0:" + millisUntilFinished / 1000);
-//            }
-//
-//            public void onFinish() {
-//                timer.setText("0:30");
-//            }
-//        }.start();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        h.postDelayed(updateTimer, 10);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        h.removeCallbacks(updateTimer);
-//    }
+    private void getQuestion() {
+        database.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                Question quest = snapshot.getValue(Question.class);
+                questions.add(new Question(quest.getTextQuest(), quest.getAnswers()));
+                updateQuestions();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
     private void updateQuestions() {
 
         numQuest.setText("Вопрос: " + (index + 1) + "/10");
-        question = quest.get(index).getTextQuest();
+        question = questions.get(index).getTextQuest();
         text_question.setText(question);
-        ans_1 = quest.get(index).getAnswers().get(0).getTextAnswer();
+        ans_1 = questions.get(index).getAnswers().get(0).getTextAnswer();
         btn1.setText(ans_1);
-        ans_2 = quest.get(index).getAnswers().get(1).getTextAnswer();
+        ans_2 = questions.get(index).getAnswers().get(1).getTextAnswer();
         btn2.setText(ans_2);
-        ans_3 = quest.get(index).getAnswers().get(2).getTextAnswer();
+        ans_3 = questions.get(index).getAnswers().get(2).getTextAnswer();
         btn3.setText(ans_3);
-        ans_4 = quest.get(index).getAnswers().get(3).getTextAnswer();
+        ans_4 = questions.get(index).getAnswers().get(3).getTextAnswer();
         btn4.setText(ans_4);
     }
 
@@ -171,7 +174,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                chek_1 = quest.get(index).getAnswers().get(0).getIsAnswTrue();
+                chek_1 = questions.get(index).checkAnswer(ans_1);
                 if (chek_1 == true) {
                     btn1.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
@@ -181,7 +184,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 buttonsEn();
                 break;
             case R.id.btn2:
-                chek_2 = quest.get(index).getAnswers().get(1).getIsAnswTrue();
+                chek_2 = questions.get(index).checkAnswer(ans_2);
                 if (chek_2 == true) {
                     btn2.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
@@ -191,7 +194,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 buttonsEn();
                 break;
             case R.id.btn3:
-                chek_3 = quest.get(index).getAnswers().get(2).getIsAnswTrue();
+                chek_3 = questions.get(index).checkAnswer(ans_3);
                 if (chek_3 == true) {
                     btn3.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;
@@ -201,7 +204,7 @@ public class FragmentQuiz extends Fragment implements View.OnClickListener {
                 buttonsEn();
                 break;
             case R.id.btn4:
-                chek_4 = quest.get(index).getAnswers().get(3).getIsAnswTrue();
+                chek_4 = questions.get(index).checkAnswer(ans_4);
                 if (chek_4 == true) {
                     btn4.setBackground(getResources().getDrawable(R.drawable.next));
                     result++;

@@ -3,7 +3,6 @@
     <string name="StartBtn">Начать</string>
     <string name="ExitBtn">Выйти</string>
 
-    <!-- Для диалога -->
     <string name="text_dialog">Желаете покинуть игру?</string>
     <string name="exit">Да</string>
     <string name="cancel">Нет</string>
