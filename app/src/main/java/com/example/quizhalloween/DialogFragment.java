@@ -30,7 +30,7 @@ public class DialogFragment extends AppCompatDialogFragment {
             }
         });
 
-        setCancelable(false); // при нажатии на любую часть экрана диалог не исчезает
+        setCancelable(false);
         return builder.create();
     }
 }
